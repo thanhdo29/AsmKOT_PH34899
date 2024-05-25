@@ -42,7 +42,7 @@ data class Lamp(val name: String, val price: Double, val img: String)
 data class Category(val nameCate:String, val img:Int)
 
 @Composable
-fun Home() {
+fun Home(doCart:()->Unit, doDetail:()->Unit) {
     val lamps = listOf(
         Lamp("Black Simple Lamp", 12.00, "https://m.media-amazon.com/images/I/61Ckk6bdzwL._AC_SL1500_.jpg"),
         Lamp("Black Simple Lamp", 12.00, "https://m.media-amazon.com/images/I/61Ckk6bdzwL._AC_SL1500_.jpg"),
@@ -85,7 +85,7 @@ fun Home() {
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { doCart() }) {
                 Image(
                     painter = painterResource(id = R.drawable.icon_cart),
                     contentDescription = "icon_search",
@@ -117,7 +117,7 @@ fun Home() {
                 modifier = Modifier.padding(horizontal = 16.dp)
             ) {
                 items(lamps) { lamp ->
-                    Type(lamp = lamp)
+                    Type(lamp = lamp, doDetail)
                 }
             }
         }
@@ -125,7 +125,7 @@ fun Home() {
 }
 
 @Composable
-fun Type(lamp: Lamp) {
+fun Type(lamp: Lamp, doDetail: () -> Unit) {
     Column {
         Box {
             AsyncImage(
@@ -137,7 +137,7 @@ fun Type(lamp: Lamp) {
                 contentDescription = "img_product"
             )
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = {doDetail() },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(5.dp)
@@ -196,5 +196,5 @@ fun CategoryComp(category: Category) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewHome() {
-    Home()
+    Home(doCart = {}, doDetail = {})
 }

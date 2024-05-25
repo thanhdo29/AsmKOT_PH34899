@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,11 +27,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Welcom(){
+fun Welcom(navigateLogin:()->Unit){
     Box(modifier = Modifier.fillMaxSize()){
         Image(painter = painterResource(id = R.drawable.banner),
             contentDescription ="banner",
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
         )
         Column(
             verticalArrangement = Arrangement.Center,
@@ -75,7 +77,7 @@ fun Welcom(){
 
             SpacerComp(height = 154)
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
-                Button(onClick = { /*TODO*/ },
+                Button(onClick = { navigateLogin() },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF242424)),
                     shape = RoundedCornerShape(4 .dp),
                     modifier = Modifier.size(159 .dp, 54.dp).fillMaxWidth(),
@@ -101,5 +103,5 @@ fun SpacerComp(height:Int){
 @Preview(showBackground = true)
 @Composable
 fun WelcomPreview(){
-    Welcom()
+    Welcom(navigateLogin = {})
 }

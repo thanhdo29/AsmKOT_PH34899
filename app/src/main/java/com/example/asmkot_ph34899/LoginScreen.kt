@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,7 +45,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 
 @Composable
-fun Login(){
+fun Login(doLogin:()->Unit, doSignup:()->Unit){
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(top = 22.dp)) {
@@ -103,7 +104,7 @@ fun Login(){
                )
 
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
-                    Button(onClick = { /*TODO*/ },
+                    Button(onClick = { doLogin() },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF242424)),
                         shape = RoundedCornerShape(4 .dp),
                         modifier = Modifier.size(285 .dp, 50.dp).fillMaxWidth(),
@@ -119,7 +120,7 @@ fun Login(){
                 }
 
                 Text(text = "SIGN UP",
-                    modifier = Modifier.fillMaxWidth().padding(top = 30.dp),
+                    modifier = Modifier.fillMaxWidth().padding(top = 30.dp).clickable { doSignup() },
                     fontSize = 15.sp,
                     fontWeight = FontWeight(600),
                     textAlign = TextAlign.Center,
@@ -206,5 +207,4 @@ fun EditTextComp(label: String) {
 @Preview(showBackground = true)
 @Composable
 fun LoginPreview(){
-    Login()
 }
