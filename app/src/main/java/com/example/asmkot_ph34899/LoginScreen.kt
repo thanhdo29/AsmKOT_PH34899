@@ -96,7 +96,9 @@ fun Login(doLogin:()->Unit, doSignup:()->Unit){
                 EditTextComp(label = "Email")
                 EditTextComp(label = "Password")
                 Text(text = "Forgot Password",
-                    modifier = Modifier.fillMaxWidth().padding(top = 35.dp, bottom = 40.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 35.dp, bottom = 40.dp),
                     fontSize = 18.sp,
                     fontWeight = FontWeight(600),
                     textAlign = TextAlign.Center,
@@ -107,7 +109,9 @@ fun Login(doLogin:()->Unit, doSignup:()->Unit){
                     Button(onClick = { doLogin() },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF242424)),
                         shape = RoundedCornerShape(4 .dp),
-                        modifier = Modifier.size(285 .dp, 50.dp).fillMaxWidth(),
+                        modifier = Modifier
+                            .size(285.dp, 50.dp)
+                            .fillMaxWidth(),
 
                         ) {
                         Text(
@@ -120,7 +124,10 @@ fun Login(doLogin:()->Unit, doSignup:()->Unit){
                 }
 
                 Text(text = "SIGN UP",
-                    modifier = Modifier.fillMaxWidth().padding(top = 30.dp).clickable { doSignup() },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 30.dp)
+                        .clickable { doSignup() },
                     fontSize = 15.sp,
                     fontWeight = FontWeight(600),
                     textAlign = TextAlign.Center,
@@ -207,4 +214,7 @@ fun EditTextComp(label: String) {
 @Preview(showBackground = true)
 @Composable
 fun LoginPreview(){
+    Login(doLogin = { /*TODO*/ }) {
+        
+    }
 }
